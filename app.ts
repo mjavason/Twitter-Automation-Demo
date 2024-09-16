@@ -173,7 +173,8 @@ app.get('/tweets', async (req: Request, res: Response) => {
  * @swagger
  * /like:
  *   post:
- *     summary: Like a tweet
+ *     tags: [Twitter]
+ *     summary: (Paid) Like a tweet
  *     description: Like a tweet by providing the user ID and the tweet ID.
  *     requestBody:
  *       required: true
@@ -223,7 +224,7 @@ app.post('/like', async (req: Request, res: Response) => {
  * @swagger
  * /retweet:
  *   post:
- *     summary: Retweet a tweet
+ *     summary: (Paid) Retweet a tweet
  *     description: Retweet a tweet by providing the authenticated user ID and the tweet ID.
  *     requestBody:
  *       required: true
