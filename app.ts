@@ -47,13 +47,15 @@ app.post('/tweet', async (req, res) => {
   res.status(200).json({ message: 'Tweet posted successfully!', tweet });
 });
 
-// app.delete('/tweet', async (req, res) => {
-//   // Deleting the tweet
-//   const tweetId = 'your-tweet-id';
-//   await rwClient.v2.deleteTweet(tweetId);
+app.delete('/tweet', async (req, res) => {
+  // Deleting the tweet
+  const tweetId = 'your-tweet-id';
+  await rwClient.v2.deleteTweet(tweetId);
 
-//   res.status(200).json({ message: 'Tweet deleted successfully!' });
-// });
+  res.status(200).json({ message: 'Tweet deleted successfully!' });
+});
+
+
 //#endregion
 
 //#region Server Setup
