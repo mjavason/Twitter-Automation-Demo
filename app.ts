@@ -1,10 +1,11 @@
-import express, { Request, Response, NextFunction } from 'express';
-import 'express-async-errors';
-import cors from 'cors';
 import axios from 'axios';
+import cors from 'cors';
 import dotenv from 'dotenv';
+import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
 import { setupSwagger } from './swagger.config';
+import { TwitterApi } from 'twitter-api-v2';
+import 'express-async-errors';
 
 //#region App Setup
 const app = express();
@@ -12,6 +13,20 @@ const app = express();
 dotenv.config({ path: './.env' });
 const PORT = process.env.PORT || 5000;
 const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
+const appKey = process.env.TWITTER_API_KEY || 'xxxx';
+const appSecret = process.env.TWITTER_API_SECRET || 'xxxx';
+const accessToken = process.env.TWITTER_ACCESS_TOKEN || 'xxxx';
+const accessSecret = process.env.TWITTER_TOKEN_SECRET || 'xxxx';
+
+// Initialize Twitter API with credentials
+const client = new TwitterApi({
+  appKey,
+  appSecret,
+  accessToken,
+  accessSecret,
+});
+
+const rwClient = client.readWrite;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,7 +37,23 @@ setupSwagger(app, BASE_URL);
 //#endregion App Setup
 
 //#region Code here
-console.log('Hello world');
+
+// Route to post a tweet
+app.post('/tweet', async (req, res) => {
+  // Posting the tweet
+  const tweet = await rwClient.v2.tweet(
+    'This tweet was made with the Twitter API.'
+  );
+  res.status(200).json({ message: 'Tweet posted successfully!', tweet });
+});
+
+// app.delete('/tweet', async (req, res) => {
+//   // Deleting the tweet
+//   const tweetId = 'your-tweet-id';
+//   await rwClient.v2.deleteTweet(tweetId);
+
+//   res.status(200).json({ message: 'Tweet deleted successfully!' });
+// });
 //#endregion
 
 //#region Server Setup

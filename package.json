@@ -25,7 +25,8 @@
     "express-async-errors": "^3.1.1",
     "morgan": "^1.10.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "twitter-api-v2": "^1.17.2"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",

@@ -1,0 +1,10 @@
+{
+  "message": "Tweet posted successfully!",
+  "tweet": {
+    "data": {
+      "text": "This tweet was made with the Twitter API.",
+      "id": "1835598339070431729",
+      "edit_history_tweet_ids": ["1835598339070431729"]
+    }
+  }
+}
